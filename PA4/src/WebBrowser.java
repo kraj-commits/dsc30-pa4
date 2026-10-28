@@ -7,10 +7,11 @@ import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
 
 /**
- * TODO
+ * Web browser implementing
+ * dll, queue, and stack
  *
- * @author TODO
- * @since TODO
+ * @author Karan Raj
+ * @since October 27th, 2026
  */
 public class WebBrowser {
 
@@ -21,70 +22,141 @@ public class WebBrowser {
     private int currentIndex;
 
     /**
-     * TODO
+     * Default constructor
+     * initiates empty dll,
+     * empty stack and empty
+     * queue
      */
     public WebBrowser() {
-        /* TODO */
+        openTabs = new DoublyLinkedList();
+        waiting = new MyLinkedQueue();
+        closedTabs = new MyLinkedStack();
+        currentIndex = -1;
     }
 
     /**
-     * TODO
+     * Enqueue a website
+     * @param website the website being added
+     * @throws IllegalArgumentException if website
+     * is null
      */
     public void addToQueue(String website) {
-        /* TODO */
+        waiting.enqueue(website);
     }
 
     /**
-     * TODO
+     * Dequeue's the website
+     * from waiting and appends
+     * it to open tabs.
+     * @return the String name
+     * of the website
+     * @throws NoSuchElementException if
+     * there are no waiting websites
      */
     public String openNextTab() {
-        /* TODO */
-        return null;
+        if (waiting.peek() == null) {
+            throw new NoSuchElementException();
+        }
+        else {
+            String website = waiting.dequeue();
+            openTabs.add(website);
+            currentIndex = openTabs.size() - 1;
+            return website;
+        }
     }
 
     /**
-     * TODO
+     * Removed the tab from
+     * open tabs and pushes it to closed
+     * tabs
+     * @return the string value of the removed
+     * tab
+     * @throws NoSuchElementException if there isn't
+     * an open tab to remove
      */
     public String closeCurrentTab() {
-        /* TODO */
-        return null;
+
+        try {
+            String removedTab = openTabs.remove(currentIndex);
+            if (currentIndex == openTabs.size()) {
+                currentIndex--;
+            }
+            closedTabs.push(removedTab);
+            return removedTab;
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoSuchElementException();
+        }
     }
 
     /**
-     * TODO
+     * Pops the tab at the top
+     * of the stack of closed tabs
+     * and prepends it
+     * to the dll and makes it
+     * the current tab
+     * @return the string value
+     * of the popped tab
+     * @throws EmptyStackException if there
+     * is no stack to pop from
      */
     public String reopenClosedTab() {
-        /* TODO */
-        return null;
+
+        String reopenedTab = closedTabs.pop();
+        openTabs.add(0, reopenedTab);
+        currentIndex = 0;
+        return reopenedTab;
     }
 
     /**
-     * TODO
+     * Changes the current tab to
+     * the tab at the specified index
+     * @param index the index being switched to
+     * @throws IndexOutOfBoundsException if the tab
+     * being switched to doesn't exist
      */
     public void switchTab(int index) {
-        /* TODO */
+        if (index < 0 || index >= openTabs.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        currentIndex = index;
     }
 
     /**
-     * TODO
+     * Returns the website stored in the current tab
+     * @return the string of the current website
+     * @throws NoSuchElementException if there aren't
+     * open tabs
      */
     public String getCurrentTab() {
-        /* TODO */
-        return null;
+
+        try{
+            return openTabs.get(currentIndex);
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoSuchElementException();
+        }
     }
 
     /**
-     * TODO
+     * Returns the number of open tabs
+     *
      */
     public int getNumOpenTabs() {
-        /* TODO */
-        return 0;
+
+        return openTabs.size();
     }
 
     /**
-     * TODO
+     * clears all open tabs
+     * closed tabs
+     * and waiting tabs
+     * (complete reset)
+     * Just copies the constructor
      */
     public void clear() {
-        /* TODO */
+        openTabs = new DoublyLinkedList();
+        waiting = new MyLinkedQueue();
+        closedTabs = new MyLinkedStack();
+        currentIndex = -1;
+
     }
 }
