@@ -31,6 +31,7 @@ public class MyLinkedStack {
      * returns num
      * elements in stack
      * steals from dll
+     * @return the int size of the stack
      */
     public int size() {
 
@@ -85,6 +86,7 @@ public class MyLinkedStack {
      * at 0th index
      * @throws EmptyStackException catches index out of bounds
      * and throws exception
+     * @return the string value of the popped elem
      */
     public String pop() {
 

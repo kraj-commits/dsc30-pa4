@@ -261,6 +261,8 @@ public class DoublyLinkedList extends AbstractList<String> {
      * it finds the node at the specified index
      * using getNth
      * and returns its data
+     * @param index the index of the node
+     * @return the string value of the node
      * @throws IndexOutOfBoundsException via getNth
      */
     @Override
@@ -273,6 +275,8 @@ public class DoublyLinkedList extends AbstractList<String> {
     /**
      * A helper method that gets the
      * node at the specified index
+     * @param index the index of the node being gotten
+     * @return the Node that was gotten
      * @throws IndexOutOfBoundsException if below 1 or greater than size-1
      */
     private Node getNth(int index) throws IndexOutOfBoundsException {
@@ -373,18 +377,18 @@ public class DoublyLinkedList extends AbstractList<String> {
 
     /* ==================== EXTRA CREDIT ==================== */
 
-    /**
-     * TODO
-     */
-    public void slice(int start, int end, int step) {
-        // TODO: complete implementation
-    }
-
-    /**
-     * TODO
-     */
-    public void swapHalves(int n, int start, int end) {
-        // TODO: complete implementation
-    }
+//    /**
+//     * TODO
+//     */
+//    public void slice(int start, int end, int step) {
+//        // TODO: complete implementation
+//    }
+//
+//    /**
+//     * TODO
+//     */
+//    public void swapHalves(int n, int start, int end) {
+//        // TODO: complete implementation
+//    }
 
 }

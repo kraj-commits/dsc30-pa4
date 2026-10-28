@@ -138,7 +138,7 @@ public class WebBrowser {
 
     /**
      * Returns the number of open tabs
-     *
+     * @return the int number of tabs
      */
     public int getNumOpenTabs() {
 
