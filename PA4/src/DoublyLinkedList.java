@@ -17,7 +17,7 @@ public class DoublyLinkedList extends AbstractList<String> {
     private int size = 1;
     private Node head;
     private Node tail;
-    private static final int TWO = 2;
+
 
     /**
      * inner class that specifies the
@@ -226,8 +226,8 @@ public class DoublyLinkedList extends AbstractList<String> {
      */
     @Override
     public void clear() {
-        head.setNext(null);
-        tail.setNext(null);
+        head.setNext(tail);
+        tail.setPrev(head);
         size = 0;
     }
 

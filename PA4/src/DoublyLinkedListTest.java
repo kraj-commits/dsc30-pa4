@@ -10,7 +10,7 @@ class DoublyLinkedListTest {
     DoublyLinkedList d = new DoublyLinkedList();
 
     @Test
-    public void DoublyLinkedListTest(){
+    public void ConstructorTest(){
         assertEquals(0, d.size());
         assertThrows(IndexOutOfBoundsException.class, () -> {
             d.get(0);
